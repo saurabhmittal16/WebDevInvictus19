@@ -7,10 +7,9 @@
     "start": "nodemon index.js"
   },
   "dependencies": {
-    "ejs": "^2.6.1",
     "fastify": "^1.14.1",
-    "mongoose": "^5.4.10",
-    "point-of-view": "^2.1.0"
+    "fastify-static": "^1.1.0",
+    "mongoose": "^5.4.10"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"

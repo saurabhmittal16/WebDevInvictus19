@@ -1,17 +1,18 @@
 const fastify = require('fastify');
 const mongoose = require('mongoose');
+const path = require('path');
 const app = fastify();
 
+app.register(require('fastify-static'), {
+    root: path.join(__dirname, 'public'),
+    prefix: '/public/',
+});
+  
 const mongo_url = 'mongodb://localhost:27017/webdev19';
 
-app.register(require('point-of-view'), {
-    engine: {
-        ejs: require('ejs')
-    }
-})
 
 app.get('/', (req, res) => {
-    res.send("HELLO WORLD");
+    res.sendFile('index.html');
 });
 
 mongoose.connect(mongo_url, {useNewUrlParser: true})
