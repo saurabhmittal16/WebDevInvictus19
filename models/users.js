@@ -15,9 +15,7 @@ var UserSchema = new mongoose.Schema({
                 return re.test(email)
             }
         },
-        minlength : 1,
-        unique : true,
-        
+        minlength : 1,        
     },
     phone :{
         type: String,

@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "fastify": "^1.14.1",
+    "fastify-formbody": "^2.1.0",
     "fastify-static": "^1.1.0",
     "mongoose": "^5.4.10"
   },

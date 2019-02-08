@@ -4,6 +4,9 @@ const path = require('path');
 const User = require('./models/users')
 const app = fastify();
 
+const setPassword = '1234';
+
+app.register(require('fastify-formbody'))
 app.register(require('fastify-static'), {
     root: path.join(__dirname, 'public'),
     prefix: '/public/',
@@ -12,6 +15,7 @@ app.register(require('fastify-static'), {
 const mongo_url = 'mongodb://localhost:27017/webdev19';
 
 app.post('/user', (req, res) => {
+    console.log(req.body);
     const user = new User ({
         email : req.body.email,
         phone : req.body.phone,
@@ -19,15 +23,22 @@ app.post('/user', (req, res) => {
         name: req.body.name
     })
     user.save().then(() => {
-        res.send('Successfull');
+        console.log("Successful");
+        res.redirect('/');
     },(e) => {
         res.status(400).send(e)
     })
     
-})
+});
+
 app.get('/user', async (req,res) => {
-    const users = await User.find({})
-    res.send(users)
+    const password = req.query.password;
+    if (password === setPassword) {
+        const users = await User.find({})
+        res.send(users)
+    } else {
+        res.redirect('/');
+    }
 })
 
 app.get('*', (req, res) => {
