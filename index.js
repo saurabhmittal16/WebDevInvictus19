@@ -12,7 +12,8 @@ app.register(require('fastify-static'), {
     prefix: '/public/',
 });
   
-const mongo_url = 'mongodb://localhost:27017/webdev19';
+const mongo_url = process.env.MONGODB_URI || 'mongodb://localhost:27017/webdev19';
+const port = process.env.PORT || 8000;
 
 app.post('/user', (req, res) => {
     console.log(req.body);
@@ -49,7 +50,7 @@ mongoose.connect(mongo_url, {useNewUrlParser: true})
     .then(
         () => {
             console.log("Connected to DB")
-            app.listen(8000, '0.0.0.0', function(err, address) {
+            app.listen(port, '0.0.0.0', function(err, address) {
                 if (err) {
                     console.log(err);
                     process.exit(1);
