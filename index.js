@@ -23,17 +23,11 @@ app.post('/user', (req, res) => {
     },(e) => {
         res.status(400).send(e)
     })
-    // const user = {
-    //     email : req.body.email,
-    //     phone : req.body.phone,
-    //     college : req.body.college
-    // }
-    // User.create(user, (err) => {
-    //     if(err) {
-    //         res.send('Error')
-    //     }
-    // })
-
+    
+})
+app.get('/user', (req,res) => {
+    const users = await User.find({})
+    res.send(users)
 })
 
 app.get('*', (req, res) => {
