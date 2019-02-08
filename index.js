@@ -25,7 +25,7 @@ app.post('/user', (req, res) => {
     })
     
 })
-app.get('/user', (req,res) => {
+app.get('/user', async (req,res) => {
     const users = await User.find({})
     res.send(users)
 })
