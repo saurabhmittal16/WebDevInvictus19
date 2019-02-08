@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
 var UserSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
     email : {
         type : String,
         required : true,
@@ -18,18 +22,19 @@ var UserSchema = new mongoose.Schema({
     phone :{
         type: String,
         validate: {
-          validator: function(v) {
-            return /\d{3}-\d{3}-\d{4}/.test(v);
-          },
-          message: props => `${props.value} is not a valid phone number!`
+            validator: function(v) {
+                return /[6-9][0-9]{9}/.test(v);
+            },
+            message: props => `${props.value} is not a valid phone number!`
         },
         required: true
     },
     college : {
         type : String,
         required : true,
-        
     }
-})
+}, {
+    versionKey: false
+});
 
-module.exports = mongoose.model('User', UserSchema)
+module.exports = mongoose.model('User', UserSchema);

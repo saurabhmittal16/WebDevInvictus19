@@ -15,7 +15,8 @@ app.post('/user', (req, res) => {
     const user = new User ({
         email : req.body.email,
         phone : req.body.phone,
-        college : req.body.college
+        college : req.body.college,
+        name: req.body.name
     })
     user.save().then(() => {
         res.send('Successfull');
